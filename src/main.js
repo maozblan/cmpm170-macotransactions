@@ -1,3 +1,5 @@
+//local variables 
+//create main function of 
 
 let config = {
   type: Phaser.AUTO,
