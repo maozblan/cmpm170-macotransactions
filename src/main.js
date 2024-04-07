@@ -9,6 +9,8 @@ let config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [ Game ],
+  scene: [ Menu, Game ],
 }
 let game = new Phaser.Game(config)
+
+//default height and width: 1024, 768
