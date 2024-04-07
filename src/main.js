@@ -1,21 +1,12 @@
 
 let config = {
   type: Phaser.AUTO,
-  width: 640, 
-  height: 360,
-  // pixelPerfect: true,
+  pixelPerfect: true,
   pixelArt: true,
-  zoom: 1.5,
-  physics: {
-      default: 'arcade',
-      arcade: {
-          gravity: { y: 1000 },
-          // debug: true,
-      }
+  scale: {
+    mode: Phaser.Scale.FIT,
+    autoCenter: Phaser.Scale.CENTER_BOTH,
   },
-  scene: [ Menu, Game ]
+  scene: [ Game ],
 }
 let game = new Phaser.Game(config)
-
-// keybinds
-let keySPACE, keyLEFT, keyRIGHT, keyUP, keyDOWN, keyM, keyENTER
