@@ -13,9 +13,11 @@ class Game extends Phaser.Scene {
             fontSize: 30,
             align: "center"
         }).setOrigin(.5)
+
+        this.info = new PersonalInfo(this, 0, 0, 1, 1000)
     }
 
     update() {
-        
+        this.info.update()
     }
 }
