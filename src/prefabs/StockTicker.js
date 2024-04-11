@@ -3,17 +3,15 @@ class StockTicker {
   constructor(scene, companyAIObj, x, y, scale=1) {
     this.ticker = new StockGraph(scene, this, x, y-(25*scale), scale);
     this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
-    console.log(companyAIObj.name);
+    this.stock = new Stock(scene, x+(170*scale), y-(25*scale), scale);
     scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
-    // need to get starting stock price
-    this.history = [100]; // list of "historical data" for 
+    this.companyAIObj = companyAIObj;
+
   }
 
   update() {
-    // update to push the right number
-    this.history.push(this.history[this.history.length-1] * (Math.random()*2));
-    console.log(this.history);
+    this.stock.update(this.companyAIObj.rate);
   }
 
   sell() {
@@ -52,5 +50,23 @@ class StockData {
     // buttons
     new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y);
     new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y);
+  }
+}
+
+class Stock {
+  constructor(scene, x, centerY, scale) {
+    this.centerY = centerY;
+    this.top = centerY - 115;
+    this.bot = centerY + 115;
+    this.currentY = centerY;
+    this.particles = scene.add.particles(x, this.currentY, 'particle', {
+      lifespan: 1830*scale,
+      speedX: -200,
+      maxVelocityY: 0,
+    });
+  }
+
+  update(rate) {
+    this.particles.y = ((this.bot - this.top) * ((rate-100)/100) + this.top);
   }
 }

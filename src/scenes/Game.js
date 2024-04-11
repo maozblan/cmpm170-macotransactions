@@ -24,11 +24,14 @@ class Game extends Phaser.Scene {
         this.company2.initilizeComp(this.compConfig)
         this.company3.initilizeComp(this.compConfig)
 
-        this.h1 = new Harness(this, 250, 200, this.company1, 'particle')
+        // this.h1 = new Harness(this, 250, 200, this.company1, 'particle')
+        this.h1 = new StockTicker(this, this.company1, 250, 200)
 
-        this.h2 = new Harness(this, 800, 200, this.company2, 'particle')
+        // this.h2 = new Harness(this, 800, 200, this.company2, 'particle')
+        this.h2 = new StockTicker(this, this.company2, 800, 200)
 
-        this.h3 = new Harness(this, 500, 600, this.company3, 'particle')
+        // this.h3 = new Harness(this, 500, 600, this.company3, 'particle')
+        this.h3 = new StockTicker(this, this.company3, 500, 600)
     }
 
     update() {
