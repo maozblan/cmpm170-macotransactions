@@ -3,9 +3,17 @@ class StockTicker {
   constructor(scene, companyAIObj, x, y, scale=1) {
     this.ticker = new StockGraph(scene, this, x, y-(25*scale), scale);
     this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
+    console.log(companyAIObj.name);
+    scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
+
+    // need to get starting stock price
+    this.history = [100]; // list of "historical data" for 
   }
 
   update() {
+    // update to push the right number
+    this.history.push(this.history[this.history.length-1] * (Math.random()*2));
+    console.log(this.history);
   }
 
   sell() {
@@ -23,6 +31,10 @@ class StockGraph {
     this.width = 400 * scale;
     this.height = 250 * scale;
     scene.add.rectangle(x, y, this.width, this.height, 0xAAAAAA).setOrigin(0.5);
+  }
+  
+  update() {
+    
   }
 }
 
