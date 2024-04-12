@@ -1,7 +1,7 @@
 // aligned at center, locked 3:4 aspect ratio
 class StockTicker {
   constructor(scene, companyAIObj, x, y, scale=1) {
-    this.ticker = new StockGraph(scene, this, x, y-(25*scale), scale);
+    this.ticker = new StockGraph(scene, companyAIObj, x, y-(25*scale), scale);
     this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
     scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
@@ -24,11 +24,11 @@ class StockTicker {
 
 // the up down graphic of the stocks
 class StockGraph {
-  constructor(scene, stockTicker, x, y, scale) {
+  constructor(scene, companyAIObj, x, y, scale) {
     this.width = 400 * scale;
     this.height = 250 * scale;
     scene.add.rectangle(x, y, this.width, this.height, 0xAAAAAA).setOrigin(0.5);
-    this.stockTicker = stockTicker;
+    this.companyAIObj = companyAIObj;
 
     // the group of bars that tick up and down
     this.stockGroup = new StockGroup(scene, x-(195*scale), y+(10*scale), 220*scale, scale);
@@ -42,7 +42,7 @@ class StockGraph {
   
   update() {
     // shifted down 50/200 because hardcoded stocks to min at 100
-    this.history.push((this.stockTicker.companyAIObj.rate-50)/200); //make percentage and lower by a bit
+    this.history.push((this.companyAIObj.rate-50)/200); //make percentage and lower by a bit
     this.history.shift();
     this.stockGroup.update(this.history);
   }
