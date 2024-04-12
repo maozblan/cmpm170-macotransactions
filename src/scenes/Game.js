@@ -35,6 +35,7 @@ class Game extends Phaser.Scene {
     }
 
     update() {
+      // if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER))) {
         this.company1.update()
         this.company2.update()
         this.company3.update()
@@ -42,5 +43,6 @@ class Game extends Phaser.Scene {
         this.h1.update()
         this.h2.update()
         this.h3.update()
+      // }
     }
 }
