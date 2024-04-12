@@ -8,12 +8,14 @@ class Game extends Phaser.Scene {
     }
 
     create() {
+        // TEMPORARY
         this.add.text(game.config.width / 2, game.config.height / 3, "Game Scene", {
             color: '#FFFFFF',
             fontSize: 30,
             align: "center"
         }).setOrigin(.5)
 
+        // company AI things
         this.company1 = new CompanyAI(this, "Amazon", 100, 200, 0.5)
         this.company2 = new CompanyAI(this, "Google", 100, 200, .5)
         this.company3 = new CompanyAI(this, "Gamestop", 100, 200, .5)
@@ -25,10 +27,11 @@ class Game extends Phaser.Scene {
         this.company3.initilizeComp(this.compConfig)
 
         this.h1 = new Harness(this, 250, 200, this.company1, 'particle')
-
         this.h2 = new Harness(this, 800, 200, this.company2, 'particle')
-
         this.h3 = new Harness(this, 500, 600, this.company3, 'particle')
+        
+        // personal info things
+        this.info = new PersonalInfo(this, 0, 0, 1, 1000)
     }
 
     update() {
