@@ -9,20 +9,28 @@ class Gacha extends Phaser.Physics.Arcade.Sprite{
     create(){
         //this.pin = this.add.sprite(this.x, this.y+150, 'triangle').setScale(0.05); 
         this.canSpin = true; 
-
+        this.sliceprizes = ["A KEY!!", "50 STARS", '500 STARS', 'BAD LUCK', '200 STARS', '100 STARS']; 
         this.timedEvent = this.time.addEvent({
             delay: 3000,  //every 3 second - adjust later
             loop: true,
             callback: this.spinWheel,
             callbackScope: this,
         }) 
+
+        this.prizeText = this.add.text(game.config.width / 2, game.config.height - 20, "Spin the wheel", {
+            font: "bold 32px Arial",
+            align: "center",
+            color: "white"
+        });
+        this.prizeText.setOrigin(0.5); 
+ 
     }
 
     spinWheel(){
  
         // can we spin the wheel?
         if(this.canSpin){
- 
+            this.prizeText.setText("");
             // the wheel will spin round from 2 to 4 times. This is just coreography
             var rounds = Phaser.Math.Between(2, 4);
  
@@ -57,6 +65,7 @@ class Gacha extends Phaser.Physics.Arcade.Sprite{
                 // function to be executed once the tween has been completed
                 onComplete: function(tween){
                     // player can spin again
+                    this.prizeText.setText(this.sliceprizes[prize]);
                     this.canSpin = true;
                 }
             });
