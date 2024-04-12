@@ -1,32 +1,44 @@
-class Gacha extends Phaser.Physics.Arcade.Sprite{
-    constructor(scene, x, y, texture){
-        super(scene, x, y, texture); 
+class GachaWheel extends Phaser.Physics.Arcade.Sprite {
+    constructor(scene, x, y){
+        super(scene, x, y, 'wheel'); 
 
         scene.add.existing(this); 
         scene.physics.add.existing(this); 
     }
+}
 
-    create(){
-        //this.pin = this.add.sprite(this.x, this.y+150, 'triangle').setScale(0.05); 
+class Gacha {
+    constructor(scene, x, y) {
+        // greybox
+        this.height = 750;
+        this.width = 450;
+        scene.add.rectangle(x, y, this.width, this.height, 0x808080);
+
+        this.scene = scene;
         this.canSpin = true; 
         this.sliceprizes = ["A KEY!!", "50 STARS", '500 STARS', 'BAD LUCK', '200 STARS', '100 STARS']; 
-        this.timedEvent = this.time.addEvent({
+        this.timedEvent = this.scene.time.addEvent({
             delay: 3000,  //every 3 second - adjust later
             loop: true,
             callback: this.spinWheel,
             callbackScope: this,
         }) 
 
-        this.prizeText = this.add.text(game.config.width / 2, game.config.height - 20, "Spin the wheel", {
+        this.prizeText = this.scene.add.text(game.config.width / 2, game.config.height - 20, "Spin the wheel", {
             font: "bold 32px Arial",
             align: "center",
             color: "white"
         });
         this.prizeText.setOrigin(0.5); 
- 
+        
+        // wheel sprite
+        this.wheel = new GachaWheel(scene, x-this.width/4, y+150).setScale(0.4);
+        // pin sprite
+        this.pin = this.scene.add.sprite(x-this.width/4, y+275, 'triangle').setScale(0.03); 
     }
 
     spinWheel(){
+        console.log('EEEEEEEEEEEEEEEEEEEEEEEE', this.canSpin);
  
         // can we spin the wheel?
         if(this.canSpin){
@@ -45,10 +57,10 @@ class Gacha extends Phaser.Physics.Arcade.Sprite{
  
             // animation tweeen for the spin: duration 3s, will rotate by (360 * rounds + degrees) degrees
             // the quadratic easing will simulate friction
-            this.tweens.add({
+            this.scene.tweens.add({
  
                 // adding the wheel to tween targets
-                targets: [this.texture], //refering to the wheel sprite
+                targets: [this.wheel], //refering to the wheel sprite
  
                 // angle destination
                 angle: 360 * rounds + degrees,

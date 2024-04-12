@@ -4,7 +4,9 @@ class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('particle', './assets/img/particle.png')
+        this.load.path = './assets/img/'
+        this.load.image('wheel', 'wheel.png'); 
+        this.load.image('triangle', 'triangle.png'); 
     }
 
     create() {
@@ -47,17 +49,16 @@ class Game extends Phaser.Scene {
           },
           callbackScope: this,
       })
+
+      // left hand bar
+      this.info = new PersonalInfo(this, 0, 0, 1, 1000)
+      this.assets = new Assets(this, 0, 750, 1, 3);
+
+      // right hand bar
+      this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
+      this.wheel = new Gacha(this, game.config.width, 0);
     }
 
     update() {
-      // if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER))) {
-        // this.company1.update()
-        // this.company2.update()
-        // this.company3.update()
-
-        // this.h1.update()
-        // this.h2.update()
-        // this.h3.update()
-      // }
     }
 }
