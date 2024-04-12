@@ -53,20 +53,39 @@ class StockData {
   }
 }
 
-class Stock {
+class StockGroup extends Phaser.Physics.Arcade.Group {
   constructor(scene, x, centerY, scale) {
-    this.centerY = centerY;
+    super(scene.physics.world, scene);
+
     this.top = centerY - 115;
     this.bot = centerY + 115;
-    this.currentY = centerY;
-    this.particles = scene.add.particles(x, this.currentY, 'particle', {
-      lifespan: 1830*scale,
-      speedX: -200,
-      maxVelocityY: 0,
+    this.history = [0];
+
+    this.barWidth = 30;
+    this.barSpace = 10;
+
+    // https://github.com/nathanaltice/VD02-Auto-Fire/blob/master/src/prefab/fireball.js
+    // https://newdocs.phaser.io/docs/3.55.0/Phaser.Types.GameObjects.Group.GroupCreateConfig
+    this.createMultiple({
+      classType: Stock,
+      quantity: 10,
+      
     });
   }
 
   update(rate) {
     this.particles.y = ((this.bot - this.top) * ((rate-100)/100) + this.top);
+  }
+}
+
+class Stock {
+  constructor(scene, x, y, width) {
+    // make a rectangle
+    scene.add.rectangle(x, y, width, 100, 0x63B75B).setOrigin(0.5, 0); // rectangle
+    // scene.add.rectangle(start, y, width, stop-start, 0xD35050).setOrigin(0.5, 0);
+  }
+
+  update(shiftFactor) {
+    // figure out how to move the rectangle
   }
 }
