@@ -26,21 +26,38 @@ class Game extends Phaser.Scene {
         this.company2.initilizeComp(this.compConfig)
         this.company3.initilizeComp(this.compConfig)
 
-        this.h1 = new Harness(this, 250, 200, this.company1, 'particle')
-        this.h2 = new Harness(this, 800, 200, this.company2, 'particle')
-        this.h3 = new Harness(this, 500, 600, this.company3, 'particle')
+        // stock ticker graphic things
+        this.h1 = new StockTicker(this, this.company1, 250, 200)
+        this.h2 = new StockTicker(this, this.company2, 800, 200)
+        this.h3 = new StockTicker(this, this.company3, 500, 600)
         
-        // personal info things
-        this.info = new PersonalInfo(this, 0, 0, 1, 1000)
+        // timer for company AI and stock ticker updates
+        this.time.addEvent({
+          delay: 500, // in milliseconds
+          startAt: 0,
+          loop: true,
+          callback: () => {
+            this.company1.update()
+            this.company2.update()
+            this.company3.update()
+
+            this.h1.update()
+            this.h2.update()
+            this.h3.update()
+          },
+          callbackScope: this,
+      })
     }
 
     update() {
-        this.company1.update()
-        this.company2.update()
-        this.company3.update()
+      // if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ENTER))) {
+        // this.company1.update()
+        // this.company2.update()
+        // this.company3.update()
 
-        this.h1.update()
-        this.h2.update()
-        this.h3.update()
+        // this.h1.update()
+        // this.h2.update()
+        // this.h3.update()
+      // }
     }
 }

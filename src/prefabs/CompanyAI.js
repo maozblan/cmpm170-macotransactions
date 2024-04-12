@@ -108,7 +108,7 @@ class CompanyAI {
     }
 
     //random behavior additive
-    diceRoll(val=100) {
+    diceRoll(val=50) {
         let dice = ((Math.random() * val))
         if(dice < 1) {
             console.log("HIIIIIIIIIIT")
