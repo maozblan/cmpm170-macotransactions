@@ -30,7 +30,7 @@ class PersonalInfo {
             fontSize: 24 
         }).setOrigin(0.5)
 
-        this.econData = scene.add.text(this.width / 4 + 55, this.height / 4 + 60, "BULL", {
+        this.econData = scene.add.text(this.width / 4 + 55, this.height / 4 + 60, "BEAR", {
             fontSize: 24 
         }).setOrigin(0.5)
 

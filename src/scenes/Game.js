@@ -46,6 +46,8 @@ class Game extends Phaser.Scene {
             this.h1.update()
             this.h2.update()
             this.h3.update()
+
+            this.econ.update();
           },
           callbackScope: this,
       })
@@ -57,6 +59,9 @@ class Game extends Phaser.Scene {
       // right hand bar
       this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
       this.wheel = new Gacha(this, game.config.width, 0);
+
+      // economy
+      this.econ = new Economy(this.info.econData, [this.company1, this.company2, this.company3]);
     }
 
     update() {
