@@ -37,7 +37,8 @@ class Game extends Phaser.Scene {
         this.time.addEvent({
           delay: 500, // in milliseconds
           startAt: 0,
-          loop: true,
+        // TODO uncomment this later
+        //   loop: true,
           callback: () => {
             this.company1.update()
             this.company2.update()

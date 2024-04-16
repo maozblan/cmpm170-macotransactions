@@ -21,14 +21,15 @@ class BattlePass {
         }).setOrigin(0.5)
         
         this.b1 = new Button(scene, (() => {this.buy(35, 30)}), this, `Option 1: 35% - $30`, x - 115, this.height / 2 + 110)
-        this.b2 = new Button(scene, (() => {this.buy(25, 27)}), this, `Option 1: 25% - $27`, x - 115, this.height / 2 + 180)
-        this.b3 = new Button(scene, (() => {this.buy(15, 20)}), this, `Option 1: 15% - $20`, x - 115, this.height / 2 + 250)
-        this.b4 = new Button(scene, (() => {this.buy(10, 15)}), this, `Option 1: 10% - $15`, x - 115, this.height / 2 + 320)
+        this.b2 = new Button(scene, (() => {this.buy(25, 27)}), this, `Option 2: 25% - $27`, x - 115, this.height / 2 + 180)
+        this.b3 = new Button(scene, (() => {this.buy(15, 20)}), this, `Option 3: 15% - $20`, x - 115, this.height / 2 + 250)
+        this.b4 = new Button(scene, (() => {this.buy(10, 15)}), this, `Option 4: 10% - $15`, x - 115, this.height / 2 + 320)
 
     }
 
     buy(percent, cost) {
         //add in actual value changes later
         console.log(`bought ${percent}% better odds for ${cost} USD`)
+        notify("CREDIT CARD NOTIFICATION", `${cost} USD has just been charged to your account.`);
     }
 }
