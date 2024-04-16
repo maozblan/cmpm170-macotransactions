@@ -90,8 +90,8 @@ class StockGroup {
     this.height = height;
     this.history = [0];
 
-    this.barWidth = 16;
-    this.barSpace = 1;
+    this.barWidth = 16*scale;
+    this.barSpace = 1*scale;
     this.maxBars = 23;
 
     // list of stock objects
