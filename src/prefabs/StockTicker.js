@@ -6,6 +6,15 @@ class StockTicker {
     scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
     this.companyAIObj = companyAIObj;
+
+    this.playerObj
+    
+    for(const c of companyAIObj.compArray){
+      if(c instanceof Player) {
+        this.playerObj = c
+      }
+    }
+    console.log(this.playerObj)
   }
 
   update() {
@@ -15,10 +24,12 @@ class StockTicker {
 
   sell() { // TODO link to company AI objs that correspond
     console.log('sold');
+    this.playerObj.sell(this.companyAIObj)
   }
   
   buy() { // TODO link to company AI objs that correspond
     console.log('bought');
+    this.playerObj.buy(this.companyAIObj)
   }
 }
 

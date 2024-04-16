@@ -15,6 +15,8 @@ class Assets {
 
         //build visual elements
         scene.add.rectangle(x, y, this.width, this.height, 0x808080);
+
+        this.textArray = []
         
         let i = 0
         for(const c of companyDict.entries()) {
@@ -26,6 +28,8 @@ class Assets {
             this.dataText = scene.add.text(this.width / 4 + 55, (3*y / 5) + (55 * i), `0`, {
                 fontSize: 20
             }).setOrigin(0.5)
+
+            this.textArray[i] = this.dataText
 
             i++
         }
@@ -44,8 +48,10 @@ class Assets {
     update() {
         //this will have to be written once we have integrated all the systems
         //it will update the stock values with each pass
+        let i = 0
         for(const c of this.compDict.entries()) {
-            this.dataText.text = `${c[1][0]}`
+            this.textArray[i].text = `${c[1][0]}`
+            i++
         }
     }
 }

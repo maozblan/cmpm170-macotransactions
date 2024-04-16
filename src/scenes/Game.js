@@ -36,32 +36,38 @@ class Game extends Phaser.Scene {
         this.h1 = new StockTicker(this, this.company1, 250, 200)
         this.h2 = new StockTicker(this, this.company2, 800, 200)
         this.h3 = new StockTicker(this, this.company3, 500, 600)
-        
-        // timer for company AI and stock ticker updates
-        this.time.addEvent({
-          delay: 500, // in milliseconds
-          startAt: 0,
-          loop: true,
-          callback: () => {
-            this.company1.update()
-            this.company2.update()
-            this.company3.update()
-            this.player.update()
 
-            this.h1.update()
-            this.h2.update()
-            this.h3.update()
-          },
-          callbackScope: this,
-      })
+        
 
       // left hand bar
       this.info = new PersonalInfo(this, 0, 0, 1, this.player)
       this.assets = new Assets(this, 0, 750, 1, this.player.compDict);
 
+      //add the player ticker object
+      this.playerTicker = new PlayerStockTicker(this, this.player, 112.5, 93.75, .5)
+
       // right hand bar
       this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
       this.wheel = new Gacha(this, game.config.width, 0);
+
+      // timer for company AI and stock ticker updates
+      this.time.addEvent({
+        delay: 500, // in milliseconds
+        startAt: 0,
+        loop: true,
+        callback: () => {
+          this.company1.update()
+          this.company2.update()
+          this.company3.update()
+          this.player.update()
+
+          this.h1.update()
+          this.h2.update()
+          this.h3.update()
+          this.playerTicker.update()
+        },
+        callbackScope: this,
+    })
     }
 
     update() {

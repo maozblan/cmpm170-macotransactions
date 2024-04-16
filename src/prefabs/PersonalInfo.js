@@ -15,7 +15,8 @@ class PersonalInfo {
         scene.add.rectangle(x, y, this.width, this.height, 0x808080);
         
         //small ticker box
-        scene.add.rectangle(this.width / 4, this.height / 8, this.width / 2 - 40, this.height / 4 - 40,  0xFFFFFF).setOrigin(.5)
+        //scene.add.rectangle(this.width / 4, this.height / 9, this.width / 2 - 40, this.height / 4 - 40,  0xFFFFFF).setOrigin(.5)
+
 
         //cash and amount text objects
         this.cashData = scene.add.text(this.width / 4 - 55, this.height / 4 + 20, "CASH:", {
