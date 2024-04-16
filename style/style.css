@@ -1,12 +1,26 @@
 body {
   padding: 0;
   margin: 0;
-  background-image: url('./img/desktop.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+/* desktop scaling */
+#desktop-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+#desktop-background {
+  z-index: -5;
 }
 
 /* phaser canvas */
 canvas { 
+  z-index: 5;
+  position: relative;
 }
