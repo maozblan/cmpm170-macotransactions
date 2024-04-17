@@ -31,5 +31,6 @@ class BattlePass {
         //add in actual value changes later
         console.log(`bought ${percent}% better odds for ${cost} USD`)
         notify("CREDIT CARD NOTIFICATION", `${cost} USD has just been charged to your account.`);
+        charge("charge from battle pass, macrotransactions.app", -1*cost);
     }
 }

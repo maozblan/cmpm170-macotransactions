@@ -15,6 +15,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 p,h1 {
@@ -41,6 +42,36 @@ p,h1 {
   width: 100%;
   height: 50px;
   background-color: #0a163f;
+  /* to organize items */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#desktop-bottom-bar img {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 0 10px;
+}
+#search-bar {
+  margin-right: 15px;
+  background-color: #fff;
+  color: #aaa;
+  padding: 5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  height: 90%;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+.clickable {
+  margin: 0 5px;
+}
+.clickable:hover,.active {
+  cursor: pointer;
+  background-color: #ffffff53;
 }
 
 /* notification system */
@@ -95,4 +126,37 @@ p,h1 {
 .tab-title {
   color: #fff;
   cursor: default;
+}
+.close {
+  /* close tab button */
+  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+  margin: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  text-align: center;
+  color: #fff;
+  border: #fff 1px solid;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* for bank data */
+.money-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 5px;
+  background-color: #eee;
+}
+.money-add {
+  color: green;
+}
+.money-sub {
+  color: red;
 }

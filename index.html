@@ -29,15 +29,27 @@
 <body>
     <div id="desktop-container">
         <img id="desktop-background" src="./assets/img/desktop.jpg" />
-        <div id="desktop-bottom-bar"></div>
+        <div id="desktop-bottom-bar">
+            <img src="assets/img/dice-icon.png" alt="" />
+            <div id="search-bar">may the odds be ever in your favor</div>
+            <img src="assets/img/stock-icon.png" class="clickable active" data-screen="game" />
+            <img src="assets/img/bank-icon.png" class="clickable" data-screen="bank" />
+        </div>
     </div>
     <div id="game-screen" class="tab">
         <p class="tab-title">MACROTRANSACTIONS</p>
+        <div class="close">x</div>
     </div>
     <div id="bank-screen" class="tab">
         <p class="tab-title">YOUR ACCOUNT INFORMATION</p>
+        <div class="close">x</div>
         <div id="bank-screen-data" class="tab-data">
-            <h1>YOUR CURRENT BALANCE: USD</h1>
+            <h1></h1>
+            <div id="money-changes">
+                <div class="money-input">
+                    <!-- changes to account go here -->
+                </div>
+            </div>
         </div>
     </div>
 

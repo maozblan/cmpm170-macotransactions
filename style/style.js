@@ -9,6 +9,18 @@ $(document).ready(function() {
   $(".tab").click(function() {
     reorganizeTabs(`#${$(this).attr('id')}`);
   });
+
+  // setup
+  $("#bank-screen-data h1").text(`YOUR CURRENT TOTAL: ${moneyInBank} USD`);
+  $('.close').click(function() {
+    $(this).parent().hide();
+    $(`[data-screen=${$(this).parent().attr('id').slice(0, -7)}]`).toggleClass('active');
+  });
+  $("#notification").click(() => {openWindow('bank')});
+  $(".clickable").click(function() {
+    toggleWindow($(this).attr('data-screen'));
+  });
+  $("#bank-screen").hide();
 });
 
 $(window).resize(scaleBG);
@@ -26,6 +38,7 @@ function scaleBG() {
   $("#game-screen").append($("canvas")); // just incase phaser wants to escape
 }
 
+// tab physics
 let openTabs = ['#game-screen', '#bank-screen'];
 function reorganizeTabs(topTab) {
   openTabs.splice(openTabs.indexOf(topTab), 1);
@@ -33,4 +46,20 @@ function reorganizeTabs(topTab) {
   for (let i = 1; i <= openTabs.length; ++i) {
     $(openTabs[openTabs.length-i]).css('z-index', i);
   }
+}
+function toggleWindow(w) {
+  if ($(`[data-screen=${w}]`).hasClass('active')) {
+    closeWindow(w);
+  } else {
+    openWindow(w);
+  }
+}
+function openWindow(w) {
+  $(`#${w}-screen`).show();
+  $(`[data-screen=${w}]`).toggleClass('active');
+  reorganizeTabs(`#${w}-screen`);
+}
+function closeWindow(w) {
+  $(`#${w}-screen`).hide();
+  $(`[data-screen=${w}]`).toggleClass('active');
 }

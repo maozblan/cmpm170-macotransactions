@@ -30,6 +30,22 @@ function updateNotification(title, text) { // helper
           opacity: 0.5,
         }, 500);
       }
-    }, 1500);
+    }, 2000); // shows for 2 seconds
   });
+}
+
+// handling bank account page
+var moneyInBank = 100;
+function charge(text, amount) {
+  // input a money thing
+  let container = $('<div>');
+  container.addClass('money-input');
+  container.append($('<p>').text(text));
+  container.append($('<p>').text(parseFloat(amount).toFixed(2))
+    .addClass(amount > 0 ? 'money-add' : 'money-sub'));
+  $("#money-changes").prepend(container);
+
+  // update global variables
+  moneyInBank += amount;
+  $("#bank-screen-data h1").text(`YOUR CURRENT TOTAL: ${moneyInBank} USD`);
 }
