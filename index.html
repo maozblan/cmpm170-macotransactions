@@ -21,6 +21,7 @@
     <script src="./src/main.js"></script>
     <!-- styles -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="./style/style.css">
     <script src="./style/style.js"></script>
     <script src="./style/desktop.js"></script>
@@ -30,9 +31,16 @@
         <img id="desktop-background" src="./assets/img/desktop.jpg" />
         <div id="desktop-bottom-bar"></div>
     </div>
-    <div id="game-screen">
-        <p>MACROTRANSACTIONS</p>
+    <div id="game-screen" class="tab">
+        <p class="tab-title">MACROTRANSACTIONS</p>
     </div>
+    <div id="bank-screen" class="tab">
+        <p class="tab-title">YOUR ACCOUNT INFORMATION</p>
+        <div id="bank-screen-data" class="tab-data">
+            <h1>YOUR CURRENT BALANCE: USD</h1>
+        </div>
+    </div>
+
     <div id="notification">
         <p id="notification-title">sample title</p>
         <p id="notification-text">sample text</p>
