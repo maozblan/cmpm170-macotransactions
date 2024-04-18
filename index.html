@@ -21,7 +21,43 @@
     <script src="./src/scenes/Load.js"></script>
     <script src="./src/scenes/Menu.js"></script>
     <script src="./src/main.js"></script>
+    <!-- styles -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./style/style.css">
+    <script src="./style/style.js"></script>
+    <script src="./style/desktop.js"></script>
 </head>
 <body>
-    
+    <div id="desktop-container">
+        <img id="desktop-background" src="./assets/img/desktop.jpg" />
+        <div id="desktop-bottom-bar">
+            <!-- icons from https://game-icons.net/ -->
+            <img src="assets/img/dice-icon.png" alt="" />
+            <div id="search-bar">may the odds be ever in your favor</div>
+            <img src="assets/img/stock-icon.png" class="clickable active" data-screen="game" />
+            <img src="assets/img/bank-icon.png" class="clickable" data-screen="bank" />
+        </div>
+    </div>
+    <div id="game-screen" class="tab">
+        <p class="tab-title">MACROTRANSACTIONS</p>
+        <div class="close">x</div>
+    </div>
+    <div id="bank-screen" class="tab">
+        <p class="tab-title">YOUR ACCOUNT INFORMATION</p>
+        <div class="close">x</div>
+        <div id="bank-screen-data" class="tab-data">
+            <h1></h1>
+            <div id="money-changes">
+                <div class="money-input">
+                    <!-- changes to account go here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification">
+        <p id="notification-title">sample title</p>
+        <p id="notification-text">sample text</p>
+    </div>
 </body>
