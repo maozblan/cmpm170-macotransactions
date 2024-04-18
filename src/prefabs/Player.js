@@ -22,6 +22,10 @@ class Player {
         //calculations for running average
         this.averagePrice = 200        //running average, starts at 100
         this.smoothingValue = 0.9      //this is used to give more significance to more recent values. The closer to 1, the more significance applied
+
+        this.dead = false
+        this.debt = 0
+        this.display = false
     }
 
     initilizeComp(compArray){
@@ -101,10 +105,38 @@ class Player {
         company.averagePrice = (company.smoothingValue * company.rate) + ((1 - company.smoothingValue) * company.averagePrice)
     }
 
+    addMoney(amount) {
+
+    }
+
     update() {
         //make sure its initilized
         if(this.init == false) {
             throw new Error(`company ${this.name} is not initilized. Please use the initilzeComp() method before attempting to update.\n`)
+        }
+
+        if(this.money < 0) {
+            this.debt += 1
+            if(this.debt >= 20){
+                this.dead = true
+                this.rate = 0
+                this.money = -100
+            }
+        } else {
+            this.debt = 0
+        }
+
+        if (this.dead == true && this.display == false) {
+            //reset flag
+            this.display = true
+            this.money = 0
+            //build visual elements
+            this.scene.add.rectangle(game.config.width/6, game.config.height/6, 3 * game.config.width / 4, 3 * game.config.height/ 4, 0x0000ff).setOrigin(0)
+            this.scene.add.text(game.config.width / 2, game.config.height / 2, "YOU LOSE!!!!!", {
+                color: '#FFFFFF',
+                fontSize: 50,
+                align: "center"
+            }).setOrigin(.5)
         }
     }
 }

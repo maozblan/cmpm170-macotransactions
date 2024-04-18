@@ -26,6 +26,9 @@ class CompanyAI {
         //calculations for running average
         this.averagePrice = 200        //running average, starts at 100
         this.smoothingValue = 0.9      //this is used to give more significance to more recent values. The closer to 1, the more significance applied
+
+        this.debt = 0
+        this.dead = false
     }
 
     initilizeComp(compArray){
@@ -108,7 +111,7 @@ class CompanyAI {
     }
 
     //random behavior additive
-    diceRoll(val=50) {
+    diceRoll(val=70) {
         let dice = ((Math.random() * val))
         if(dice < 1) {
             console.log("HIIIIIIIIIIT")
@@ -124,46 +127,60 @@ class CompanyAI {
             throw new Error(`company ${this.name} is not initilized. Please use the initilzeComp() method before attempting to update.\n`)
         }
 
-
-        console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
-
-        //starting behavior (buy stocks randomly to get started)
-        if(this.start == true) {
-            this.start = false  
-            //go through each company
-            for (const c of this.compArray) {
-                if(c.name != this.name){
-                    //buy a random amount of each stock
-                    let amount = (Math.trunc((Math.random() * 1000) / this.num_others))
-                    //console.log( this.name, ": ", amount)
-                    this.buy(c, amount)
-                }
+        if(this.money < 0) {
+            this.debt += 1
+            if(this.debt == 20){
+                this.dead = true
+                this.rate = 0
+                this.money = 0
             }
-        } 
-        //active behavior - after starting buy-up
-        else {
-            //check positions for each stock
-            for(const c of this.compArray) {
-                if (c.name != this.name) { 
-                    //buy behavior
-                    if(c.rate < c.averagePrice || this.diceRoll() == true) {
-                        //buy a random-ish number of stocks
-                        this.buy(c, Math.trunc((Math.random() * 1000) / this.num_others))
-                    }
+        } else {
+            this.debt = 0
+        }
 
-                    //sell behavior
-                    //sell immediately if the stock price exceeds 150% of the bought price
-                    if (c.rate > (this.compDict.get(c.name)[1]) * 1.5 || this.diceRoll() == true) {
-                        //console.log(this.name, this.compDict.get(c.name)[1] * 1.5)
-                        this.sell(c, this.compDict.get(c.name)[0])
-                    }
-
-                    //sell immediately if the stock dips too low
-                    if(c.rate < (this.compDict.get(c.name)[1]) * .75 || this.diceRoll() == true) {
-                        this.sell(c, this.compDict.get(c.name)[0])
+        if(this.dead != true) {
+            console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
+            //starting behavior (buy stocks randomly to get started)
+            if(this.start == true) {
+                this.start = false  
+                //go through each company
+                for (const c of this.compArray) {
+                    if(c.name != this.name){
+                        //buy a random amount of each stock
+                        let amount = (Math.trunc((Math.random() * 1000) / this.num_others))
+                        //console.log( this.name, ": ", amount)
+                        this.buy(c, amount)
                     }
                 }
             } 
+            //active behavior - after starting buy-up
+            else {
+                //check positions for each stock
+                for(const c of this.compArray) {
+                    if (c.name != this.name) { 
+                        //buy behavior
+                        if(c.rate < c.averagePrice || this.diceRoll() == true) {
+                            //buy a random-ish number of stocks
+                            this.buy(c, Math.trunc((Math.random() * 1000) / this.num_others))
+                        }
+
+                        //sell behavior
+                        //sell immediately if the stock price exceeds 150% of the bought price
+                        if (c.rate > (this.compDict.get(c.name)[1]) * 1.5 || this.diceRoll() == true) {
+                            //console.log(this.name, this.compDict.get(c.name)[1] * 1.5)
+                            this.sell(c, this.compDict.get(c.name)[0])
+                        }
+
+                        //sell immediately if the stock dips too low
+                        if(c.rate < (this.compDict.get(c.name)[1]) * .75 || this.diceRoll() == true) {
+                            this.sell(c, this.compDict.get(c.name)[0])
+                        }
+                    }
+                } 
+            }
+        }
+        else {
+            
         }
     }
 }
