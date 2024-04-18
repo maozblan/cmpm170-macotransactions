@@ -60,8 +60,8 @@ class StockData {
       .setOrigin(0, 0.5);
 
     // buttons
-    new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y);
-    new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y);
+    new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y, 1); //moves with the scrolling feature 
+    new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y, 1); //moves with the scrolling feature 
 
     this.stockTicker = stockTicker;
   }
@@ -108,7 +108,7 @@ class StockGroup {
 class Stock {
   constructor(scene, x, y, width) {
     // make a rectangle
-    this.self = scene.add.rectangle(x, y-1, width, 2, 0x888888).setOrigin(0.5, 0); // rectangle
+    this.self = scene.add.rectangle(x, y-1, width, 2, 0x888888).setOrigin(0.5, 0); // rectangle 
   }
 
   change(start, end) {

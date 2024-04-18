@@ -1,7 +1,7 @@
 //the trading algorithm that companies will use to simulate real stock behavior
 //USAGE:
     //create a company AI object with 
-class CompanyAI {
+class CompanyAI{
     //parameter list
         //scene, company name, starting trading value, max trading value, risk temperment (value 0 - 1), starting cash,
     constructor(scene, name, starting, max, risk, money=1000) {
@@ -37,13 +37,13 @@ class CompanyAI {
                 this.num_others += 1
             }
         }
-        console.log(this.compDict)
+        //console.log(this.compDict)
     }
 
     //buy stock
     buy(company, amount) {
         //if there is enough stock to buy
-        console.log(`${this.name} buying ${company.name}: ${company.name} price: ${company.rate}, ${this.name} amount: ${amount} `)
+        //console.log(`${this.name} buying ${company.name}: ${company.name} price: ${company.rate}, ${this.name} amount: ${amount} `)
         if(company.stocks > amount) {
             //subtract those from the total
             company.stocks -= amount
@@ -78,7 +78,7 @@ class CompanyAI {
     //sell stock
     sell(company, amount) {
         //if there is enough to sell
-        console.log(`${this.name} selling ${company.name}: ${company.name} price: ${company.rate}, ${this.name} bought: ${this.compDict.get(company.name)[1]} `)
+        //console.log(`${this.name} selling ${company.name}: ${company.name} price: ${company.rate}, ${this.name} bought: ${this.compDict.get(company.name)[1]} `)
         if(this.compDict.get(company.name) < amount) {
             //add them back to total
             company.stocks += amount
@@ -111,7 +111,7 @@ class CompanyAI {
     diceRoll(val=50) {
         let dice = ((Math.random() * val))
         if(dice < 1) {
-            console.log("HIIIIIIIIIIT")
+            //console.log("HIIIIIIIIIIT")
             return true
         } else {
             return false
@@ -125,7 +125,7 @@ class CompanyAI {
         }
 
 
-        console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
+        //console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
 
         //starting behavior (buy stocks randomly to get started)
         if(this.start == true) {

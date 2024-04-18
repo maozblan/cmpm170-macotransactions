@@ -14,18 +14,23 @@ class Assets {
         this.num = num_companies
 
         //build visual elements
-        scene.add.rectangle(x, y, this.width, this.height, 0x808080);
+        scene.add.rectangle(x, y, this.width, this.height, 0x808080).setScrollFactor(0); 
+        const stringList = ['Amazon', 'Google', 'Gamestop'];
         
-        let i = 1
-        while(i <= this.num){
+    //     let i = 0; // Changed the index to start from 0
+    //     while (i < stringList.length) { // Changed condition to iterate over the length of stringList
+    //         //text objects for each company
+    //         this.dataText = scene.add.text(this.width / 4 - 40, (y / 2) + (55 * (i + 1)), `Company ${i + 1}: ${stringList[i]}`, {
+    //             fontSize: 20 
+    //     }).setOrigin(0.5).setScrollFactor(0);
+    // } 
+        
+        let i = 0
+        while(i <= this.num-1){
             //text objects for each company
-            this.dataText = scene.add.text(this.width / 4 - 40, (y / 2) + (55 * i), `Company${i}:`, {
+            this.dataText = scene.add.text(this.width / 5 - 80, (y / 2) + (55 * i), `Company${i+1}:${stringList[i]}`, {
                 fontSize: 20 
-            }).setOrigin(0.5)
-
-            this.dataText = scene.add.text(this.width / 4 + 55, (y / 2) + (55 * i), `example`, {
-                fontSize: 20
-            }).setOrigin(0.5)
+            }).setScrollFactor(0)
             i++
         }
 

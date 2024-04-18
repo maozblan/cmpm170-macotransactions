@@ -4,8 +4,8 @@
 
 let config = {
   type: Phaser.AUTO,
-  height: 750,
-  width: 1024,
+  height: 650, //750
+  width: 950, //1024
   pixelPerfect: true,
   pixelArt: true,
   // scale: {
@@ -21,7 +21,7 @@ let config = {
       },
     },
   },
-  scene: [ Menu, Game, Load ],
+  scene: [ Menu, Game, Load ], 
 }
 let game = new Phaser.Game(config)
 

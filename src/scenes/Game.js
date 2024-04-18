@@ -1,4 +1,5 @@
 class Game extends Phaser.Scene {
+    dummy = 10; 
     constructor() {
         super('gameScene')
     }
@@ -11,6 +12,7 @@ class Game extends Phaser.Scene {
 
     create() {
         // TEMPORARY
+        var cam = this.cameras.main.setBounds(-200, 0, 1450, 808);
         this.add.text(game.config.width / 2, game.config.height / 3, "Game Scene", {
             color: '#FFFFFF',
             fontSize: 30,
@@ -50,6 +52,13 @@ class Game extends Phaser.Scene {
           callbackScope: this,
       })
 
+      
+      this.input.on("pointermove", function (p) {
+        if (!p.isDown) return;
+        cam.scrollX -= (p.x - p.prevPosition.x); //wire this to tickers instead???
+        cam.scrollY -= (p.y - p.prevPosition.y); //scrolls up and down
+      });
+
       // left hand bar
       this.info = new PersonalInfo(this, 0, 0, 1, 1000)
       this.assets = new Assets(this, 0, 750, 1, 3);
@@ -57,6 +66,9 @@ class Game extends Phaser.Scene {
       // right hand bar
       this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
       this.wheel = new Gacha(this, game.config.width, 0);
+
+
+      
     }
 
     update() {
