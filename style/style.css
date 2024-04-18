@@ -1,0 +1,162 @@
+html {
+  --tab-color: #273c81;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #0a163f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+p,h1 {
+  margin: 6px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* desktop scaling */
+#desktop-container {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+#desktop-background {
+  z-index: -5;
+}
+#desktop-bottom-bar {
+  z-index: 10;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #0a163f;
+  /* to organize items */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+#desktop-bottom-bar img {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 0 10px;
+}
+#search-bar {
+  margin-right: 15px;
+  background-color: #fff;
+  color: #aaa;
+  padding: 5px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  height: 90%;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+.clickable {
+  margin: 0 5px;
+}
+.clickable:hover,.active {
+  cursor: pointer;
+  background-color: #ffffff53;
+}
+
+/* notification system */
+#notification {
+  z-index: 10;
+  padding: 10px;
+  width: 400px;
+  height: 150px;
+  background-color: #0a163f;
+  opacity: 0.5;
+  box-sizing: border-box;
+  /* position naturally off screen */
+  position: absolute;
+  bottom: 60px;
+  left: calc(100vw + 20px);
+}
+#notification p {
+  font-family: 'Courier New', Courier, monospace;
+  color: #fff;
+  cursor: default;
+}
+#notification-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* phaser canvas */
+#game-screen {
+  z-index: 5;
+}
+
+/* tab information */
+.tab {
+  position: absolute;
+  /* have them all the same size for goodness sake */
+  width: 1024px;
+  height: 780px;
+  /* color and style */
+  background-color: var(--tab-color);
+  border: 4px solid var(--tab-color);
+  display: flex;
+  flex-direction: column;
+}
+.tab-data {
+  background-color: #ffffff;
+  width: 1024px;
+  height: 780px;
+  overflow-y: scroll;
+  padding: 15px;
+  box-sizing: border-box;
+}
+.tab-title {
+  color: #fff;
+  cursor: default;
+}
+.close {
+  /* close tab button */
+  font-family: 'Courier New', Courier, monospace;
+  box-sizing: border-box;
+  margin: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  text-align: center;
+  color: #fff;
+  border: #fff 1px solid;
+  border-radius: 100px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* for bank data */
+.money-input {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  box-sizing: border-box;
+  margin: 5px;
+  background-color: #eee;
+}
+.money-add {
+  color: green;
+}
+.money-sub {
+  color: red;
+}
