@@ -25,14 +25,27 @@ class Gacha {
         this.canSpin = true; 
         this.sliceprizes = ["A KEY!!", "50 STARS", '500 STARS', 'BAD LUCK', '200 STARS', '100 STARS']; 
         this.slices = 6; 
-        this.spins = 0; 
-        this.bptimer = false; 
+
         this.timedEvent = this.scene.time.addEvent({
             delay: 3000,  //every 3 second - adjust later
             loop: true,
             callback: this.spinWheel,
             callbackScope: this,
         }) 
+
+        this.timedEvent2 = this.scene.time.addEvent({
+            delay: 3000,
+            loop: true,
+            callback: () => {
+                // Stop the wheel
+                this.stopWheel();
+                // Set canSpin to true after another 3 seconds
+                this.scene.time.delayedCall(3000, () => {
+                    this.canSpin = true;
+                }, [], this);
+            },
+            callbackScope: this
+        });
 
         this.prizeText = this.scene.add.text(game.config.width - 110, game.config.height/2, "Spin the wheel", {
             font: "bold 25px Arial",
@@ -65,23 +78,24 @@ class Gacha {
         //console.log('heyyyy', percent); 
         if(percent == 35){
             this.slices = 2; 
-            this.bptimer = true; 
+            this.stopWheel();   
         }
         if(percent == 25){
             this.slices = 4; 
-            this.bptimer = true; 
+            this.stopWheel();   
         }
         if(percent = 15){
             this.slices = 5; 
-            this.bptimer = true; 
+            this.stopWheel();   
         }
         if(percent = 10){
             this.slices = 5.5
-            this.bptimer = true; 
+            this.stopWheel();   
         }
-        if(this.spins % 5 == 0){
-            this.bptimer = false; 
-        }
+    }
+
+    stopWheel(){
+        this.canSpin = false; 
     }
 
     spinWheel(){
@@ -125,11 +139,8 @@ class Gacha {
                 onComplete: function(tween){
                     // player can spin again
                     this.prizeText.setText(this.sliceprizes[prize]);
-                    if(this.bptimer == false){
-                        this.canSpin = true;
-                    }
-                    this.spins += 1; 
-                    console.log('weeee', this.spins)
+                    this.canSpin = true;
+                    console.log(this.canSpin)
                 }
             });
         }
