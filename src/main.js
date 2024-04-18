@@ -4,8 +4,8 @@
 
 let config = {
   type: Phaser.AUTO,
-  height: 650, //750
-  width: 950, //1024
+  height: 750, //750
+  width: 1024, //1024
   pixelPerfect: true,
   pixelArt: true,
   // scale: {

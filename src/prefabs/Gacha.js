@@ -47,7 +47,7 @@ class Gacha {
             callbackScope: this
         });
 
-        this.prizeText = this.scene.add.text(game.config.width - 110, game.config.height/2, "Spin the wheel", {
+        this.prizeText = this.scene.add.text(game.config.width - 110, game.config.height/2 - 50, "Spin the wheel", {
             font: "bold 25px Arial",
             color: "white"
         });
