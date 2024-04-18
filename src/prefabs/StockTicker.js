@@ -6,6 +6,15 @@ class StockTicker {
     scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
     this.companyAIObj = companyAIObj;
+
+    this.playerObj
+    
+    for(const c of companyAIObj.compArray){
+      if(c instanceof Player) {
+        this.playerObj = c
+      }
+    }
+    console.log(this.playerObj)
   }
 
   update() {
@@ -15,10 +24,12 @@ class StockTicker {
 
   sell() { // TODO link to company AI objs that correspond
     console.log('sold');
+    this.playerObj.sell(this.companyAIObj)
   }
   
   buy() { // TODO link to company AI objs that correspond
     console.log('bought');
+    this.playerObj.buy(this.companyAIObj)
   }
 }
 
@@ -60,8 +71,8 @@ class StockData {
       .setOrigin(0, 0.5);
 
     // buttons
-    new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y);
-    new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y);
+    new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y, 1); //moves with the scrolling feature 
+    new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y, 1); //moves with the scrolling feature 
 
     this.stockTicker = stockTicker;
   }
@@ -79,8 +90,8 @@ class StockGroup {
     this.height = height;
     this.history = [0];
 
-    this.barWidth = 16;
-    this.barSpace = 1;
+    this.barWidth = 16*scale;
+    this.barSpace = 1*scale;
     this.maxBars = 23;
 
     // list of stock objects
@@ -108,7 +119,7 @@ class StockGroup {
 class Stock {
   constructor(scene, x, y, width) {
     // make a rectangle
-    this.self = scene.add.rectangle(x, y-1, width, 2, 0x888888).setOrigin(0.5, 0); // rectangle
+    this.self = scene.add.rectangle(x, y-1, width, 2, 0x888888).setOrigin(0.5, 0); // rectangle 
   }
 
   change(start, end) {

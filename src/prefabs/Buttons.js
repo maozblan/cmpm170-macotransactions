@@ -1,6 +1,7 @@
 class Button {
-  constructor(scene, callbackFx, callbackScope, text, x, y, font='courier new', fontSize='50') {
+  constructor(scene, callbackFx, callbackScope, text, x, y, sf, font='courier new', fontSize='50') {
     // variables
+    this.sf = sf; //scrollfactor 
     this.scene = scene;
     this.callbackFx = callbackFx;
     this.callbackScope = callbackScope;
@@ -12,8 +13,12 @@ class Button {
       .setPadding(10)
       .setStyle({ backgroundColor: '#FACADE' })
       .setInteractive({ useHandCursor: true })
+      .setScrollFactor(sf)
       .on('pointerdown', () => {callbackFx.bind(callbackScope)()})
       .on('pointerover', () => this.button.setStyle({ fill: '#f39c12' }))
-      .on('pointerout', () => this.button.setStyle({ fill: '#FFF' }));
+      .on('pointerout', () => this.button.setStyle({ fill: '#FFF' }));  
+
+      // this.button = button1;
+      // console.log(typeof button1)
   }
 }
