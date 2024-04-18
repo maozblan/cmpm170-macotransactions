@@ -14,6 +14,7 @@ class Assets {
         //an array of the companies to the object
 
         //build visual elements
+      
         scene.add.rectangle(x, y, this.width, this.height, 0x808080);
 
         this.textArray = []
@@ -30,7 +31,6 @@ class Assets {
             }).setOrigin(0.5)
 
             this.textArray[i] = this.dataText
-
             i++
         }
 

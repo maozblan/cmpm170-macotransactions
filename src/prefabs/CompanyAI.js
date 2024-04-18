@@ -1,7 +1,7 @@
 //the trading algorithm that companies will use to simulate real stock behavior
 //USAGE:
     //create a company AI object with 
-class CompanyAI {
+class CompanyAI{
     //parameter list
         //scene, company name, starting trading value, max trading value, risk temperment (value 0 - 1), starting cash,
     constructor(scene, name, starting, max, risk, money=1000) {
@@ -40,13 +40,13 @@ class CompanyAI {
                 this.num_others += 1
             }
         }
-        console.log(this.compDict)
+        //console.log(this.compDict)
     }
 
     //buy stock
     buy(company, amount) {
         //if there is enough stock to buy
-        console.log(`${this.name} buying ${company.name}: ${company.name} price: ${company.rate}, ${this.name} amount: ${amount} `)
+        //console.log(`${this.name} buying ${company.name}: ${company.name} price: ${company.rate}, ${this.name} amount: ${amount} `)
         if(company.stocks > amount) {
             //subtract those from the total
             company.stocks -= amount
@@ -81,7 +81,7 @@ class CompanyAI {
     //sell stock
     sell(company, amount) {
         //if there is enough to sell
-        console.log(`${this.name} selling ${company.name}: ${company.name} price: ${company.rate}, ${this.name} bought: ${this.compDict.get(company.name)[1]} `)
+        //console.log(`${this.name} selling ${company.name}: ${company.name} price: ${company.rate}, ${this.name} bought: ${this.compDict.get(company.name)[1]} `)
         if(this.compDict.get(company.name) < amount) {
             //add them back to total
             company.stocks += amount
@@ -114,7 +114,7 @@ class CompanyAI {
     diceRoll(val=70) {
         let dice = ((Math.random() * val))
         if(dice < 1) {
-            console.log("HIIIIIIIIIIT")
+            //console.log("HIIIIIIIIIIT")
             return true
         } else {
             return false
@@ -127,6 +127,18 @@ class CompanyAI {
             throw new Error(`company ${this.name} is not initilized. Please use the initilzeComp() method before attempting to update.\n`)
         }
 
+  //starting behavior (buy stocks randomly to get started)
+        if(this.start == true) {
+            this.start = false  
+            //go through each company
+            for (const c of this.compArray) {
+                if(c.name != this.name){
+                    //buy a random amount of each stock
+                    let amount = (Math.trunc((Math.random() * 1000) / this.num_others))
+                    //console.log( this.name, ": ", amount)
+                    this.buy(c, amount)
+                }
+        
         if(this.money < 0) {
             this.debt += 1
             if(this.debt == 20){
