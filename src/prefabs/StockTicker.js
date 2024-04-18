@@ -1,11 +1,20 @@
 // aligned at center, locked 3:4 aspect ratio
 class StockTicker {
   constructor(scene, companyAIObj, x, y, scale=1) {
-    this.ticker = new StockGraph(scene, this, x, y-(25*scale), scale);
+    this.ticker = new StockGraph(scene, companyAIObj, x, y-(25*scale), scale);
     this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
     scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
     this.companyAIObj = companyAIObj;
+
+    this.playerObj
+    
+    for(const c of companyAIObj.compArray){
+      if(c instanceof Player) {
+        this.playerObj = c
+      }
+    }
+    console.log(this.playerObj)
   }
 
   update() {
@@ -15,20 +24,22 @@ class StockTicker {
 
   sell() { // TODO link to company AI objs that correspond
     console.log('sold');
+    this.playerObj.sell(this.companyAIObj)
   }
   
   buy() { // TODO link to company AI objs that correspond
     console.log('bought');
+    this.playerObj.buy(this.companyAIObj)
   }
 }
 
 // the up down graphic of the stocks
 class StockGraph {
-  constructor(scene, stockTicker, x, y, scale) {
+  constructor(scene, companyAIObj, x, y, scale) {
     this.width = 400 * scale;
     this.height = 250 * scale;
     scene.add.rectangle(x, y, this.width, this.height, 0xAAAAAA).setOrigin(0.5);
-    this.stockTicker = stockTicker;
+    this.companyAIObj = companyAIObj;
 
     // the group of bars that tick up and down
     this.stockGroup = new StockGroup(scene, x-(195*scale), y+(10*scale), 220*scale, scale);
@@ -42,7 +53,7 @@ class StockGraph {
   
   update() {
     // shifted down 50/200 because hardcoded stocks to min at 100
-    this.history.push((this.stockTicker.companyAIObj.rate-50)/200); //make percentage and lower by a bit
+    this.history.push((this.companyAIObj.rate-50)/200); //make percentage and lower by a bit
     this.history.shift();
     this.stockGroup.update(this.history);
   }
@@ -79,8 +90,8 @@ class StockGroup {
     this.height = height;
     this.history = [0];
 
-    this.barWidth = 16;
-    this.barSpace = 1;
+    this.barWidth = 16*scale;
+    this.barSpace = 1*scale;
     this.maxBars = 23;
 
     // list of stock objects
