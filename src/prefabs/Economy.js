@@ -17,9 +17,9 @@ class Economy {
 
       // protection ig
       if (company.rate < 5) {
-        company.rate = this.jitter(5, 0, 5);
+        company.rate = 5;
       } else if (company.rate >= 200) {
-        company.rate = 200 - this.jitter(5, 0, 5);
+        company.rate = 200;
       }
     }
     this.textObj.text = this.market;

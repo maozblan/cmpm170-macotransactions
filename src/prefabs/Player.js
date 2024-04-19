@@ -3,7 +3,7 @@ class Player {
         //scene, company name, starting trading value, max trading value, risk temperment (value 0 - 1), starting cash,
     constructor(scene, name, starting, max, money=100000) {
         //atrributes
-        this.scene = scene          //scene binding
+        this.s = scene          //scene binding
         this.name = name            //company name
         this.stocks = 1000          //starting stock amount
         this.money = money          //cash on hand - default is 1000
@@ -25,7 +25,6 @@ class Player {
 
         this.dead = false
         this.debt = 0
-        this.display = false
     }
 
     initilizeComp(compArray){
@@ -121,17 +120,12 @@ class Player {
             this.debt = 0
         }
 
-        if (this.dead == true && this.display == false) {
-            //reset flag
-            this.display = true
-            this.money = 0
-            //build visual elements
-            this.scene.add.rectangle(game.config.width/6, game.config.height/6, 3 * game.config.width / 4, 3 * game.config.height/ 4, 0x0000ff).setOrigin(0)
-            this.scene.add.text(game.config.width / 2, game.config.height / 2, "YOU LOSE!!!!!", {
-                color: '#FFFFFF',
-                fontSize: 50,
-                align: "center"
-            }).setOrigin(.5)
+        // YOU LOSE
+        if (this.dead == true) {
+            setTimeout(() => {
+                this.s.scene.start("menuScene");
+            }, 500);
+            gameOver();
         }
     }
 }

@@ -23,6 +23,7 @@ $(document).ready(function() {
   });
   $("#bank-screen").hide();
   $("#transfer-screen").hide();
+  $("#game-over").hide();
 });
 
 $(window).resize(scaleBG);

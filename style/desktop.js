@@ -110,3 +110,8 @@ $(document).ready(function() { // didn't feel like grouping :/
     }
   });
 });
+
+// GAME OVER
+function gameOver() {
+  $('#game-over').show();
+}
