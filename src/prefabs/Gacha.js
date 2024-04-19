@@ -26,6 +26,7 @@ class Gacha {
         this.canSpin = true; 
         this.sliceprizes = ["- 1000$", "-100$ stock price", 'Free 10$!!!', 'Sell All Assets', '-10,000$', 'FCC Santions. Rate = $100']; 
         this.slices = 6; 
+        this.percent = 0
 
         this.timedEvent = this.scene.time.addEvent({
             delay: 30000,  //every 30 seconds - adjust later
@@ -77,22 +78,23 @@ class Gacha {
 
     bp(percent){
         //console.log('heyyyy', percent); 
-        if(percent == 35){
-            this.slices = 2; 
-            this.stopWheel();   
-        }
-        if(percent == 25){
-            this.slices = 4; 
-            this.stopWheel();   
-        }
-        if(percent = 15){
-            this.slices = 5; 
-            this.stopWheel();   
-        }
-        if(percent = 10){
-            this.slices = 5.5
-            this.stopWheel();   
-        }
+        // if(percent == 35){
+        //     this.slices = 2; 
+        //     this.stopWheel();   
+        // }
+        // if(percent == 25){
+        //     this.slices = 4; 
+        //     this.stopWheel();   
+        // }
+        // if(percent = 15){
+        //     this.slices = 5; 
+        //     this.stopWheel();   
+        // }
+        // if(percent = 10){
+        //     this.slices = 5.5
+        //     this.stopWheel();   
+        // }
+        this.percent = percent
     }
 
     stopWheel(){
@@ -113,6 +115,15 @@ class Gacha {
  
             // before the wheel ends spinning, we already know the prize according to "degrees" rotation and the number of slices
             var prize = 6 - 1 - Math.floor(degrees / (360 / this.slices));
+
+            //depending on battle pass purchase, there is a chance that var changes to getting 10 Dollars
+            let dice = Math.random()
+            if(dice < (this.percent / 100)) {
+                console.log("WORTH EVERY PENNY")
+                prize = "Free 10$!!!"
+            }
+
+            this.percent = 0
  
             // now the wheel cannot spin because it's already spinning
             this.canSpin = false;
