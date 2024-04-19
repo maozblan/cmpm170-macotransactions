@@ -10,7 +10,10 @@ class Game extends Phaser.Scene {
     this.load.image('wheel', 'wheel1.png');
     this.load.image('triangle', 'triangle.png');
     this.load.image('devil', 'demon.png')
+    this.load.path = './assets/sfx/'
+    this.load.audio('sad', 'sad.mp3'); 
   }
+  
 
   create() {
     // TEMPORARY
