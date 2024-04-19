@@ -30,8 +30,7 @@ class BattlePass{
         this.b4 = new Button(scene, (() => {this.buy(10, 15)}), this, `Option 1: 10% - $15`, x - 110, this.height / 2 + 230, 0) //320
 
         // connect to outside
-        this.b5 = new Button(scene, transfer, null, `  TRANSFER MONEY   `, x - 110, this.height / 2 + 330, 0)
-    
+        this.b5 = new Button(scene, transfer, null, `  TRANSFER MONEY   `, x - 110, this.height / 2 + 330, 0);
     }
 
     buy(percent, cost) {
