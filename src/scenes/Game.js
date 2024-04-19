@@ -57,7 +57,7 @@ class Game extends Phaser.Scene {
 
       // right hand bar
       this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
-      this.wheel = new Gacha(this, game.config.width, 0);
+      this.wheel = new Gacha(this, game.config.width, 0, this.player);
 
       // timer for company AI and stock ticker updates
       this.time.addEvent({
