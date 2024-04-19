@@ -7,7 +7,7 @@ class Game extends Phaser.Scene {
 
   preload() {
     this.load.path = './assets/img/'
-    this.load.image('wheel', 'wheel.png');
+    this.load.image('wheel', 'wheel1.png');
     this.load.image('triangle', 'triangle.png');
   }
 
@@ -55,8 +55,9 @@ class Game extends Phaser.Scene {
     this.playerTicker = new PlayerStockTicker(this, this.player, 112.5, 93.75, .5)
 
     // right hand bar
-    this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
     this.wheel = new Gacha(this, game.config.width, 0);
+    this.battle = new BattlePass(this, game.config.width, 750, 1, 4);
+    
 
     // timer for company AI and stock ticker updates
     this.time.addEvent({
