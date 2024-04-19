@@ -7,22 +7,22 @@ $(document).ready(function() {
   // mock "tab physics"
   $(".tab").draggable({
     handle: ".tab-header",
+    drag: function() { reorganizeTabs(`#${$(this).attr('id')}`); },
   });
-  $(".tab").click(function() {
-    reorganizeTabs(`#${$(this).attr('id')}`);
-  });
+  $(".tab").click(function() { reorganizeTabs(`#${$(this).attr('id')}`); });
 
   // setup
   $("#bank-screen-data h1").text(`YOUR CURRENT TOTAL: ${moneyInBank} USD`);
   $('.close').click(function() {
-    $(this).parent().hide();
-    $(`[data-screen=${$(this).parent().attr('id').slice(0, -7)}]`).toggleClass('active');
+    $(this).parent().parent().hide();
+    $(`[data-screen=${$(this).parent().parent().attr('id').slice(0, -7)}]`).toggleClass('active');
   });
   $("#notification").click(() => {openWindow('bank')});
   $(".clickable").click(function() {
     toggleWindow($(this).attr('data-screen'));
   });
   $("#bank-screen").hide();
+  $("#transfer-screen").hide();
 });
 
 $(window).resize(scaleBG);
@@ -41,12 +41,12 @@ function scaleBG() {
 }
 
 // tab physics
-let openTabs = ['#game-screen', '#bank-screen'];
+let allTabs = ['#game-screen', '#bank-screen', '#transfer-screen'];
 function reorganizeTabs(topTab) {
-  openTabs.splice(openTabs.indexOf(topTab), 1);
-  openTabs.unshift(topTab);
-  for (let i = 1; i <= openTabs.length; ++i) {
-    $(openTabs[openTabs.length-i]).css('z-index', i);
+  allTabs.splice(allTabs.indexOf(topTab), 1);
+  allTabs.unshift(topTab);
+  for (let i = 1; i <= allTabs.length; ++i) {
+    $(allTabs[allTabs.length-i]).css('z-index', i);
   }
 }
 function toggleWindow(w) {

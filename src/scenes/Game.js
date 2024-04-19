@@ -1,3 +1,4 @@
+var playerInGame; // to access player object outside of phaser
 class Game extends Phaser.Scene {
     dummy = 10; 
     constructor() {
@@ -25,6 +26,7 @@ class Game extends Phaser.Scene {
         this.company3 = new CompanyAI(this, "Gamestop", 100, 200, .5)
         //player object
         this.player = new Player(this, "Player", 100, 200, 100000)
+        playerInGame = this.player; // to acess outside of phaser
 
         this.compConfig = [this.company1, this.company2, this.company3, this.player]
 

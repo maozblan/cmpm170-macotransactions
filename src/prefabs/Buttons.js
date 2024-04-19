@@ -14,11 +14,14 @@ class Button {
       .setStyle({ backgroundColor: '#FACADE' })
       .setInteractive({ useHandCursor: true })
       .setScrollFactor(sf)
-      .on('pointerdown', () => {callbackFx.bind(callbackScope)()})
+      .on('pointerdown', () => {
+        if (callbackScope) {
+          callbackFx.bind(callbackScope)();
+        } else {
+          callbackFx();
+        }
+      })
       .on('pointerover', () => this.button.setStyle({ fill: '#f39c12' }))
       .on('pointerout', () => this.button.setStyle({ fill: '#FFF' }));  
-
-      // this.button = button1;
-      // console.log(typeof button1)
   }
 }

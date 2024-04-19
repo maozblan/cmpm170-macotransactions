@@ -60,6 +60,41 @@
             </div>
         </div>
     </div>
+    <div id="transfer-screen" class="tab">
+        <div class="tab-header">
+            <p class="tab-title">TRANSFER FUNDS</p>
+            <div class="close">x</div>
+        </div>
+        <div id="transfer-screen-data" class="tab-data">
+            <div id="transfer-loading">Processing...</div>
+            <form id="transfer-form">
+                <div id="transfer-from">
+                    <p>From Account:</p>
+                    <input type="checkbox" name="game" value="game"/>
+                    <label for="game">macrotransactions.app</label>
+                    <br />
+                    <input type="checkbox" name="bank" value="bank" />
+                    <label for="bank">account ending in 6942</label>
+                </div>
+                <div id="transfer-to">
+                    <p>To Account:</p>
+                    <input type="checkbox" name="game" value="game"/>
+                    <label for="game">macrotransactions.app</label>
+                    <br />
+                    <input type="checkbox" name="bank" value="bank" />
+                    <label for="bank">account ending in 6942</label>
+                </div>
+
+                <div>
+                    <label for="transfer-amount">Amount (in USD)</label>
+                    <input type="number" name="transfer-amount" id="transfer-amount" placeholder="100" />
+                </div>
+                <br />
+                <button id="submit" type="submit">Make Transfer</button>
+            </form>
+            <p id="transfer-warning"></p>
+        </div>
+    </div>
 
     <div id="notification">
         <p id="notification-title">sample title</p>

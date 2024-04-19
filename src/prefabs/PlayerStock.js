@@ -15,7 +15,6 @@ class PlayerStockTicker {
           this.playerObj = c
         }
       }
-      console.log(this.playerObj)
     }
   
     update() {

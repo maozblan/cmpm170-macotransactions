@@ -139,7 +139,7 @@ class CompanyAI {
         }
 
         if(this.dead != true) {
-            console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
+            // console.log(`${this.name}: ${this.rate} -- ${this.stocks}`)
             //starting behavior (buy stocks randomly to get started)
             if(this.start == true) {
                 this.start = false  

@@ -14,7 +14,6 @@ class StockTicker {
         this.playerObj = c
       }
     }
-    console.log(this.playerObj)
   }
 
   update() {
@@ -22,13 +21,11 @@ class StockTicker {
     this.dataBar.update();
   }
 
-  sell() { // TODO link to company AI objs that correspond
-    console.log('sold');
+  sell() {
     this.playerObj.sell(this.companyAIObj)
   }
   
-  buy() { // TODO link to company AI objs that correspond
-    console.log('bought');
+  buy() {
     this.playerObj.buy(this.companyAIObj)
   }
 
