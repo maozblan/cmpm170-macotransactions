@@ -38,8 +38,12 @@ class BattlePass{
         //this.scene.trombone.play(); 
         this.scene.wheel.bp(percent); 
         console.log(`bought ${percent}% better odds for ${cost} USD`)
-        notify("CREDIT CARD NOTIFICATION", `${cost} USD has just been charged to your account.`);
-        charge("charge from battle pass, macrotransactions.app", -1*cost);
+        if (cost <= moneyInBank) {
+            notify("CREDIT CARD NOTIFICATION", `${cost} USD has just been charged to your account.`);
+            charge("charge from battle pass, macrotransactions.app", -1*cost);
+        } else {
+            notify("WARNING", `Insufficient funds in bank account!`);
+        }
     }
 
     // deviltween(percent){
