@@ -1,7 +1,7 @@
 //the trading algorithm that companies will use to simulate real stock behavior
 //USAGE:
     //create a company AI object with 
-class CompanyAI{
+class CompanyAI {
     //parameter list
         //scene, company name, starting trading value, max trading value, risk temperment (value 0 - 1), starting cash,
     constructor(scene, name, starting, max, risk, money=1000) {
@@ -127,18 +127,6 @@ class CompanyAI{
             throw new Error(`company ${this.name} is not initilized. Please use the initilzeComp() method before attempting to update.\n`)
         }
 
-  //starting behavior (buy stocks randomly to get started)
-        if(this.start == true) {
-            this.start = false  
-            //go through each company
-            for (const c of this.compArray) {
-                if(c.name != this.name){
-                    //buy a random amount of each stock
-                    let amount = (Math.trunc((Math.random() * 1000) / this.num_others))
-                    //console.log( this.name, ": ", amount)
-                    this.buy(c, amount)
-                }
-        
         if(this.money < 0) {
             this.debt += 1
             if(this.debt == 20){

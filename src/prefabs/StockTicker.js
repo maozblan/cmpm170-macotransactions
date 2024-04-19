@@ -3,7 +3,7 @@ class StockTicker {
   constructor(scene, companyAIObj, x, y, scale=1) {
     this.ticker = new StockGraph(scene, companyAIObj, x, y-(25*scale), scale);
     this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
-    scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
+    this.name = scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
 
     this.companyAIObj = companyAIObj;
 
@@ -31,6 +31,12 @@ class StockTicker {
     console.log('bought');
     this.playerObj.buy(this.companyAIObj)
   }
+
+  setScrollFactor(x) {
+    this.name.setScrollFactor(x);
+    this.ticker.setScrollFactor(x);
+    this.dataBar.setScrollFactor(x);
+  }
 }
 
 // the up down graphic of the stocks
@@ -38,7 +44,7 @@ class StockGraph {
   constructor(scene, companyAIObj, x, y, scale) {
     this.width = 400 * scale;
     this.height = 250 * scale;
-    scene.add.rectangle(x, y, this.width, this.height, 0xAAAAAA).setOrigin(0.5);
+    this.body = scene.add.rectangle(x, y, this.width, this.height, 0xAAAAAA).setOrigin(0.5);
     this.companyAIObj = companyAIObj;
 
     // the group of bars that tick up and down
@@ -57,6 +63,11 @@ class StockGraph {
     this.history.shift();
     this.stockGroup.update(this.history);
   }
+
+  setScrollFactor(x) {
+    this.body.setScrollFactor(x);
+    this.stockGroup.setScrollFactor(x);
+  }
 }
 
 // the bar of data on the bottom
@@ -71,14 +82,20 @@ class StockData {
       .setOrigin(0, 0.5);
 
     // buttons
-    new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y, 1); //moves with the scrolling feature 
-    new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y, 1); //moves with the scrolling feature 
+    this.sellB = new Button(scene, stockTicker.sell, stockTicker, 'SELL', x + this.width/2 - 90*scale, y, 1); //moves with the scrolling feature 
+    this.buyB = new Button(scene, stockTicker.buy, stockTicker, 'BUY', x + this.width/2 - 30*scale, y, 1); //moves with the scrolling feature 
 
     this.stockTicker = stockTicker;
   }
 
   update() {
     this.dataText.text = `Current Trade Rate: ${this.stockTicker.companyAIObj.rate}`;
+  }
+
+  setScrollFactor(x) {
+    this.dataText.setScrollFactor(x);
+    this.sellB.setScrollFactor(x);
+    this.buyB.setScrollFactor(x);
   }
 }
 
@@ -111,6 +128,12 @@ class StockGroup {
     });
     for (let i = 0; i < data.length-1; ++i) {
       this.stocks[i].change(data[i], data[i+1]);
+    }
+  }
+
+  setScrollFactor(x) {
+    for (const stock of this.stocks) {
+      stock.self.setScrollFactor(x);
     }
   }
 }

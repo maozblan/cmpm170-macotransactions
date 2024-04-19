@@ -14,8 +14,8 @@ class Assets {
         //an array of the companies to the object
 
         //build visual elements
-      
-        scene.add.rectangle(x, y, this.width, this.height, 0x808080);
+        // background
+        scene.add.rectangle(x, y, this.width, this.height, 0x808080).setScrollFactor(0);
 
         this.textArray = []
         
@@ -24,11 +24,15 @@ class Assets {
             //text objects for each company
             this.dataText = scene.add.text(this.width / 4 - 40, (3*y / 5) + (55 * i), `${c[0]}:`, {
                 fontSize: 20 
-            }).setOrigin(0.5)
+            })
+                .setOrigin(0.5)
+                .setScrollFactor(0);
 
             this.dataText = scene.add.text(this.width / 4 + 55, (3*y / 5) + (55 * i), `0`, {
                 fontSize: 20
-            }).setOrigin(0.5)
+            })
+                .setOrigin(0.5)
+                .setScrollFactor(0);
 
             this.textArray[i] = this.dataText
             i++

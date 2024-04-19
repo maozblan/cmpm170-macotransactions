@@ -2,8 +2,9 @@
 class PlayerStockTicker {
     constructor(scene, companyAIObj, x, y, scale=1) {
       this.ticker = new StockGraph(scene, companyAIObj, x, y-(25*scale), scale);
+      this.ticker.setScrollFactor(0);
       //this.dataBar = new StockData(scene, this, x, y+(125*scale), scale);
-      scene.add.text(x-190*scale, y-140*scale, companyAIObj.name); // company name
+      scene.add.text(x-190*scale, y-140*scale, companyAIObj.name).setScrollFactor(0); // company name
   
       this.companyAIObj = companyAIObj;
   
