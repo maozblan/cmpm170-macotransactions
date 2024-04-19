@@ -80,7 +80,7 @@ class Game extends Phaser.Scene {
     })
 
     // economy
-    this.econ = new Economy(this.info.econData, [this.company1, this.company2, this.company3]);
+    this.econ = new Economy(this.info.econData, [this.company1, this.company2, this.company3, this.player]);
   }
 
   update() {

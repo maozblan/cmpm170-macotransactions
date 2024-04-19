@@ -6,13 +6,20 @@ class Economy {
   }
 
   update() {
-    if (this.market !== 'NORM') {
-      for (const company of this.companies) {
-        if (this.market === 'BEAR') {
-         company.rate -= this.jitter();
-        } else {
-         company.rate += this.jitter();
-        }
+    for (const company of this.companies) {
+      if (this.market === 'BEAR') {
+        company.rate -= this.jitter();
+      } else if (this.market === 'BULL'){
+        company.rate += this.jitter();
+      } else {
+        company.rate -= this.jitter(5, -5, 2);
+      }
+
+      // protection ig
+      if (company.rate < 5) {
+        company.rate = this.jitter(5, 0, 5);
+      } else if (company.rate >= 200) {
+        company.rate = 200 - this.jitter(5, 0, 5);
       }
     }
     this.textObj.text = this.market;
@@ -23,11 +30,11 @@ class Economy {
   }
 
 
-  jitter() {
+  jitter(max=5, min=1, boost=10) {
     if (Math.random() >= 0.1) {
-      return Math.floor(Math.random() * 14) + 1;
+      return Math.floor(Math.random() * (max-min)) + min;
     } else {
-      return Math.floor(Math.random() * 14) + 5;
+      return Math.floor(Math.random() * (max-min)) + boost;
     }
   }
 }
