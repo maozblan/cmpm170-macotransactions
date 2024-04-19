@@ -17,7 +17,7 @@ class Devil extends Phaser.Physics.Arcade.Sprite { //add devil sprite
 }
 
 class Gacha {
-    constructor(scene, x, y) {
+    constructor(scene, x, y, player) {
         // greybox
         this.height = 750;
         this.width = 450;
@@ -33,25 +33,27 @@ class Gacha {
         
 
         this.scene = scene;
+        this.player = player
         this.canSpin = true; 
-        this.sliceprizes = ["A KEY!!", "50 STARS", '500 STARS', 'BAD LUCK', '200 STARS', '100 STARS']; 
+        this.sliceprizes = ["- 1000$", "-100$ stock price", 'Free 10$!!!', 'Sell All Assets', '-10,000$', 'FCC Santions. Rate = $100']; 
         this.slices = 6; 
+        this.percent = 0
 
         this.timedEvent = this.scene.time.addEvent({
-            delay: 3000,  //every 3 second - adjust later
+            delay: 30000,  //every 30 seconds - adjust later
             loop: true,
             callback: this.spinWheel,
             callbackScope: this,
         }) 
 
         this.timedEvent2 = this.scene.time.addEvent({
-            delay: 3000,
+            delay: 30000,
             loop: true,
             callback: () => {
                 // Stop the wheel
                 this.stopWheel();
                 // Set canSpin to true after another 3 seconds
-                this.scene.time.delayedCall(3000, () => {
+                this.scene.time.delayedCall(30000, () => {
                     this.canSpin = true;
                 }, [], this);
             },
@@ -87,22 +89,23 @@ class Gacha {
 
     bp(percent){
         //console.log('heyyyy', percent); 
-        if(percent == 35){
-            this.slices = 2; 
-            this.stopWheel();   
-        }
-        if(percent == 25){
-            this.slices = 4; 
-            this.stopWheel();   
-        }
-        if(percent = 15){
-            this.slices = 5; 
-            this.stopWheel();   
-        }
-        if(percent = 10){
-            this.slices = 5.5
-            this.stopWheel();   
-        }
+        // if(percent == 35){
+        //     this.slices = 2; 
+        //     this.stopWheel();   
+        // }
+        // if(percent == 25){
+        //     this.slices = 4; 
+        //     this.stopWheel();   
+        // }
+        // if(percent = 15){
+        //     this.slices = 5; 
+        //     this.stopWheel();   
+        // }
+        // if(percent = 10){
+        //     this.slices = 5.5
+        //     this.stopWheel();   
+        // }
+        this.percent = percent
     }
 
     // workpls(devil){
@@ -129,6 +132,15 @@ class Gacha {
  
             // before the wheel ends spinning, we already know the prize according to "degrees" rotation and the number of slices
             var prize = 6 - 1 - Math.floor(degrees / (360 / this.slices));
+
+            //depending on battle pass purchase, there is a chance that var changes to getting 10 Dollars
+            let dice = Math.random()
+            if(dice < (this.percent / 100)) {
+                console.log("WORTH EVERY PENNY")
+                prize = "Free 10$!!!"
+            }
+
+            this.percent = 0
  
             // now the wheel cannot spin because it's already spinning
             this.canSpin = false;
@@ -156,6 +168,7 @@ class Gacha {
                 onComplete: function(tween){
                     // player can spin again
                     this.prizeText.setText(this.sliceprizes[prize]);
+                    this.wheelPunishments(this.sliceprizes[prize])
                     this.canSpin = true;
                     console.log(this.canSpin)
                 }
@@ -169,5 +182,23 @@ class Gacha {
             })
         }
     } 
+
+    wheelPunishments(event){
+        if(event == "- 1000$") {
+            this.player.money -= 1000
+        }else if (event == "-100$ stock price") {
+            this.player.rate -= 100
+        }else if (event == "Free 10$!!!") {
+            this.player.money += 10
+        }else if (event == "Sell All Assets") {
+            for(const c of this.player.compArray){
+                this.player.sell(c, 1000)
+            }
+        }else if (event == "-10,000$") {
+            this.player.money -= 10000
+        }else if (event == "FCC Santions. Rate = $100") {
+            this.player.rate = 100
+        }
+    }
 
 } 
