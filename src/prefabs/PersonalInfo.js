@@ -42,8 +42,8 @@ class PersonalInfo {
         }).setOrigin(0.5).setScrollFactor(0); 
 
         //buttons to buy and sell our own stock
-        this.buyButton = new Button(scene, this.buy, this, "BUY", this.width / 4 - 45, this.height / 3 + 85, 0)
-        this.sellButton = new Button(scene, this.sell, this, "SELL", this.width / 4 + 25, this.height / 3 + 85, 0)
+        this.buyButton = new Button(scene, this.buy, this, "BUY", this.width / 4 + 35, this.height / 3 + 85, 0)
+        this.sellButton = new Button(scene, this.sell, this, "SELL", this.width / 4 - 35, this.height / 3 + 85, 0)
 
     }
 
@@ -54,17 +54,10 @@ class PersonalInfo {
 
     sell() {
         //sell call back
-
-        //debug
-        console.log("sold")
-
         this.playerObj.sell(this.playerObj, 100)
     }
     buy() {
         //buy call back
         this.playerObj.buy(this.playerObj, 100)
-
-        //debug
-        console.log("bought")
     }
 }

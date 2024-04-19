@@ -24,11 +24,13 @@ class BattlePass{
         }).setOrigin(0.5)
         this.dataText.setScrollFactor(0); 
         
-        this.b1 = new Button(scene, (() => {this.buy(35, 30)}), this, `Option 1: 35% - $30`, x - 115, this.height / 2 + 65, 0) //110
-        this.b2 = new Button(scene, (() => {this.buy(25, 27)}), this, `Option 2: 25% - $27`, x - 115, this.height / 2 + 120, 0) //180
-        this.b3 = new Button(scene, (() => {this.buy(15, 20)}), this, `Option 3: 15% - $20`, x - 115, this.height / 2 + 175, 0) //250
-        this.b4 = new Button(scene, (() => {this.buy(10, 15)}), this, `Option 4: 10% - $15`, x - 115, this.height / 2 + 230, 0) //320
-    
+        this.b1 = new Button(scene, (() => {this.buy(35, 30)}), this, `Option 1: 35% - $30`, x - 110, this.height / 2 + 65, 0) //110
+        this.b2 = new Button(scene, (() => {this.buy(25, 27)}), this, `Option 1: 25% - $27`, x - 110, this.height / 2 + 120, 0) //180
+        this.b3 = new Button(scene, (() => {this.buy(15, 20)}), this, `Option 1: 15% - $20`, x - 110, this.height / 2 + 175, 0) //250
+        this.b4 = new Button(scene, (() => {this.buy(10, 15)}), this, `Option 1: 10% - $15`, x - 110, this.height / 2 + 230, 0) //320
+
+        // connect to outside
+        this.b5 = new Button(scene, transfer, null, `  TRANSFER MONEY   `, x - 110, this.height / 2 + 330, 0);
     }
 
     buy(percent, cost) {

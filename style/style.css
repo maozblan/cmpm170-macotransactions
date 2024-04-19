@@ -3,6 +3,7 @@ html {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 body {
@@ -54,6 +55,7 @@ p,h1 {
   margin: 0 10px;
 }
 #search-bar {
+  font-size: 12px;
   margin-right: 15px;
   background-color: #fff;
   color: #aaa;
@@ -61,7 +63,7 @@ p,h1 {
   padding-left: 10px;
   box-sizing: border-box;
   height: 90%;
-  width: 300px;
+  width: 350px;
   display: flex;
   align-items: center;
   cursor: default;
@@ -103,6 +105,11 @@ p,h1 {
   z-index: 5;
 }
 
+/* bank stuffs */
+#bank-screen-data {
+  padding: 15px;
+}
+
 /* tab information */
 .tab {
   position: absolute;
@@ -120,7 +127,6 @@ p,h1 {
   width: 1024px;
   height: 780px;
   overflow-y: scroll;
-  padding: 15px;
   box-sizing: border-box;
 }
 .tab-title {
@@ -159,4 +165,40 @@ p,h1 {
 }
 .money-sub {
   color: red;
+}
+
+/* money transfer */
+#transfer-warning {
+  color: red;
+}
+#transfer-screen, #transfer-screen-data {
+  width: 400px;
+  height: 400px;
+}
+#transfer-screen-data {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#transfer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+#transfer-form div {
+  margin-bottom: 20px;
+}
+#transfer-amount {
+  font-family: 'Courier New', Courier, monospace;
+  width: 100px;
+}
+#submit {
+  background-color: transparent;
+  text-decoration: none;
+  margin-top: 20px;
+  align-self: center;
+  font-family: 'Courier New', Courier, monospace;
 }

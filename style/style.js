@@ -1,26 +1,28 @@
 const backgroundRatio = 3840 / 2160; // bg image resolution
-$("#game-screen").append($("canvas")); // phaser sometimes REALLY REALLY want to escape
+$("#phaser-container").append($("canvas")); // phaser sometimes REALLY REALLY want to escape
 $(document).ready(function() {
   scaleBG();
-  $("#game-screen").append($("canvas")); // phaser please stop trying to escape
+  $("#phaser-container").append($("canvas")); // phaser please stop trying to escape
   
   // mock "tab physics"
-  $(".tab").draggable();
-  $(".tab").click(function() {
-    reorganizeTabs(`#${$(this).attr('id')}`);
+  $(".tab").draggable({
+    handle: ".tab-header",
+    drag: function() { reorganizeTabs(`#${$(this).attr('id')}`); },
   });
+  $(".tab").click(function() { reorganizeTabs(`#${$(this).attr('id')}`); });
 
   // setup
   $("#bank-screen-data h1").text(`YOUR CURRENT TOTAL: ${moneyInBank} USD`);
   $('.close').click(function() {
-    $(this).parent().hide();
-    $(`[data-screen=${$(this).parent().attr('id').slice(0, -7)}]`).toggleClass('active');
+    $(this).parent().parent().hide();
+    $(`[data-screen=${$(this).parent().parent().attr('id').slice(0, -7)}]`).toggleClass('active');
   });
   $("#notification").click(() => {openWindow('bank')});
   $(".clickable").click(function() {
     toggleWindow($(this).attr('data-screen'));
   });
   $("#bank-screen").hide();
+  $("#transfer-screen").hide();
 });
 
 $(window).resize(scaleBG);
@@ -35,16 +37,16 @@ function scaleBG() {
     $("#desktop-background").css("height", "auto");
     $("#desktop-background").css("width", "100vw");
   }
-  $("#game-screen").append($("canvas")); // just incase phaser wants to escape
+  $("#phaser-container").append($("canvas")); // just incase phaser wants to escape
 }
 
 // tab physics
-let openTabs = ['#game-screen', '#bank-screen'];
+let allTabs = ['#game-screen', '#bank-screen', '#transfer-screen'];
 function reorganizeTabs(topTab) {
-  openTabs.splice(openTabs.indexOf(topTab), 1);
-  openTabs.unshift(topTab);
-  for (let i = 1; i <= openTabs.length; ++i) {
-    $(openTabs[openTabs.length-i]).css('z-index', i);
+  allTabs.splice(allTabs.indexOf(topTab), 1);
+  allTabs.unshift(topTab);
+  for (let i = 1; i <= allTabs.length; ++i) {
+    $(allTabs[allTabs.length-i]).css('z-index', i);
   }
 }
 function toggleWindow(w) {

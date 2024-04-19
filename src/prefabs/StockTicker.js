@@ -14,7 +14,6 @@ class StockTicker {
         this.playerObj = c
       }
     }
-    console.log(this.playerObj)
   }
 
   update() {
@@ -22,13 +21,11 @@ class StockTicker {
     this.dataBar.update();
   }
 
-  sell() { // TODO link to company AI objs that correspond
-    console.log('sold');
+  sell() {
     this.playerObj.sell(this.companyAIObj)
   }
   
-  buy() { // TODO link to company AI objs that correspond
-    console.log('bought');
+  buy() {
     this.playerObj.buy(this.companyAIObj)
   }
 
@@ -153,6 +150,7 @@ class Stock {
     } else if (start < end) { // stock fall
       this.self.fillColor = 0xD35050;
       this.self.height = end-start;
+      console.log('fall');
       this.self.y = start;
     } else { // static stock
       this.self.fillColor = 0x888888;

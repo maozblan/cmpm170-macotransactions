@@ -35,7 +35,6 @@ class Player {
             this.compDict.set(c.name, [0, 0])
             this.num_others += 1
         }
-        console.log(this.compDict)
     }
 
     //buy stock
@@ -103,10 +102,6 @@ class Player {
         //update running average
         //this is a formula for an exponential moving average, which means that the AI will consider more recent values more heavily
         company.averagePrice = (company.smoothingValue * company.rate) + ((1 - company.smoothingValue) * company.averagePrice)
-    }
-
-    addMoney(amount) {
-
     }
 
     update() {
