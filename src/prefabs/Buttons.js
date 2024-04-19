@@ -22,6 +22,6 @@ class Button {
         }
       })
       .on('pointerover', () => this.button.setStyle({ fill: '#f39c12' }))
-      .on('pointerout', () => this.button.setStyle({ fill: '#FFF' }));  
+      .on('pointerout', () => this.button.setStyle({ fill: '#ff9c12' }));  
   }
 }
