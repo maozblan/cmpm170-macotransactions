@@ -103,6 +103,11 @@ p,h1 {
   z-index: 5;
 }
 
+/* bank stuffs */
+#bank-screen-data {
+  padding: 15px;
+}
+
 /* tab information */
 .tab {
   position: absolute;
@@ -120,7 +125,6 @@ p,h1 {
   width: 1024px;
   height: 780px;
   overflow-y: scroll;
-  padding: 15px;
   box-sizing: border-box;
 }
 .tab-title {

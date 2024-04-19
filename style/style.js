@@ -1,11 +1,13 @@
 const backgroundRatio = 3840 / 2160; // bg image resolution
-$("#game-screen").append($("canvas")); // phaser sometimes REALLY REALLY want to escape
+$("#phaser-container").append($("canvas")); // phaser sometimes REALLY REALLY want to escape
 $(document).ready(function() {
   scaleBG();
-  $("#game-screen").append($("canvas")); // phaser please stop trying to escape
+  $("#phaser-container").append($("canvas")); // phaser please stop trying to escape
   
   // mock "tab physics"
-  $(".tab").draggable();
+  $(".tab").draggable({
+    handle: ".tab-header",
+  });
   $(".tab").click(function() {
     reorganizeTabs(`#${$(this).attr('id')}`);
   });
@@ -35,7 +37,7 @@ function scaleBG() {
     $("#desktop-background").css("height", "auto");
     $("#desktop-background").css("width", "100vw");
   }
-  $("#game-screen").append($("canvas")); // just incase phaser wants to escape
+  $("#phaser-container").append($("canvas")); // just incase phaser wants to escape
 }
 
 // tab physics
