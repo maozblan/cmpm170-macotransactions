@@ -150,6 +150,7 @@ class Stock {
     } else if (start < end) { // stock fall
       this.self.fillColor = 0xD35050;
       this.self.height = end-start;
+      console.log('fall');
       this.self.y = start;
     } else { // static stock
       this.self.fillColor = 0x888888;
