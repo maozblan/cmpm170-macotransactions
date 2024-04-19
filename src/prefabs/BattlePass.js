@@ -1,5 +1,4 @@
 //import eventsCenter from "./EventCenter"
-
 class BattlePass{
     constructor(scene, x, y, scale=1, num_options) {
         //handle default args
@@ -34,9 +33,18 @@ class BattlePass{
     }
 
     buy(percent, cost) {
+        this.scene.sound.play('sad');
+        
+        //this.scene.trombone.play(); 
         this.scene.wheel.bp(percent); 
         console.log(`bought ${percent}% better odds for ${cost} USD`)
         notify("CREDIT CARD NOTIFICATION", `${cost} USD has just been charged to your account.`);
         charge("charge from battle pass, macrotransactions.app", -1*cost);
     }
+
+    // deviltween(percent){
+    //     console.log('huhhhh')
+    //     //console.log(devil.x)
+    //     this.scene.wheel.workpls(percent); 
+    // }
 }
