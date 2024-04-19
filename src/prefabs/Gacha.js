@@ -3,10 +3,16 @@
 class GachaWheel extends Phaser.Physics.Arcade.Sprite {
     constructor(scene, x, y){
         super(scene, x, y, 'wheel'); 
-
         scene.add.existing(this); 
         scene.physics.add.existing(this); 
-        console.log(scene.dummy); 
+    }
+}
+
+class Devil extends Phaser.Physics.Arcade.Sprite { //add devil sprite 
+    constructor(scene, x, y){
+        super(scene, x, y, 'devil'); 
+        scene.add.existing(this); 
+        scene.physics.add.existing(this); 
     }
 }
 
@@ -15,11 +21,16 @@ class Gacha {
         // greybox
         this.height = 750;
         this.width = 450;
-        var gachabackground = scene.add.rectangle(x, y, this.width, this.height, 0x808080);
+
+        this.devil = new Devil(scene, this.width + 415, this.height - 200); //currently hidden
+        this.devil.setScrollFactor(0); 
+
+        var gachabackground = scene.add.rectangle(x, y, this.width, this.height * 2, 0x808080);
         gachabackground.setScrollFactor(0); 
         
         //myrect.setScrollFactor(0);
         //console.log('rec', myrect)
+        
 
         this.scene = scene;
         this.canSpin = true; 
@@ -94,6 +105,12 @@ class Gacha {
         }
     }
 
+    // workpls(devil){
+    //     //devil.x = devil.x - 100; 
+    //     console.log('iuhqheignajngiu plsssss')
+    // }
+    
+
     stopWheel(){
         this.canSpin = false; 
     }
@@ -143,6 +160,13 @@ class Gacha {
                     console.log(this.canSpin)
                 }
             });
+
+            this.scene.tweens.add({
+                targets: this.devil, 
+                x: 760, 
+                ease: "Cubic.easeOut",
+                yoyo: true, // Reverse the tween automatically
+            })
         }
     } 
 
