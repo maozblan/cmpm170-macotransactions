@@ -1,5 +1,10 @@
 const backgroundRatio = 3840 / 2160; // bg image resolution
-$("#phaser-container").append($("canvas")); // phaser sometimes REALLY REALLY want to escape
+// phaser sometimes REALLY REALLY want to escape
+setTimeout(() => {
+  if ($("#phaser-container").children().length === 0) {
+    $("#phaser-container").append($("canvas")); 
+  }
+}, 500);
 $(document).ready(function() {
   scaleBG();
   $("#phaser-container").append($("canvas")); // phaser please stop trying to escape
